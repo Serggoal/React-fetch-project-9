@@ -1,17 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import { render } from "react-dom";
+import Shop from "./Shop";
+import "./output.css"
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function App() {
+  const [login, setLogin] = useState(false);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  if (login) {
+    return (
+      <>
+        <Shop />
+        <button className="btn
+        ml-2.5 bg-primary text-white border-0 px-4 py-2 min-w-150 text-base rounded cursor-pointer transition-opacity ease-in-out shadow-333xl hover:opacity-80
+        active:shadow-222xl active:translate-y-px disabled:opacity-40" 
+        onClick={() => setLogin(false)}>
+          Выйти
+        </button>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <h2 className="ml-2.5 mt-2 text-3xl">Нужно залогиниться!</h2>
+        <button className="btn
+        ml-2.5 bg-secondary border-0 px-4 py-2 min-w-150 text-base rounded cursor-pointer transition-opacity ease-in-out shadow-333xl hover:opacity-80 mx-2.5
+        active:shadow-222xl active:translate-y-px disabled:opacity-40" 
+        onClick={() => setLogin(true)}>
+          Войти
+        </button>
+      </>
+    );
+  }
+}
+
+render(<App />, document.querySelector("#root"));
